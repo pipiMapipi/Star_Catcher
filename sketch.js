@@ -22,6 +22,8 @@ let title = [];
 let titleAnimation = [];
 
 let count = 0;
+let gameEnd = false;
+let fadeIn = 0;
 
 const maxPlayerNum = 4;
 
@@ -70,7 +72,7 @@ function preload() {
   bottle = loadImage("assets/bottle.png");
   liquid = loadImage("assets/bottle2.png");
   starCatcher = loadImage("assets/catcher.png");
-  end = loadImage("assets/end.png");
+  end = loadImage("assets/end.jpg");
 
   for (let i = 0; i <= 5; i++) {
     title[i] = loadImage("assets/title/" + i + ".png");
@@ -103,132 +105,132 @@ function setup() {
           move: false,
           img: int(random(3)),
         },
-        {
-          x: random(130, 190),
-          y: random(80, 200),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(180, 260),
-          y: random(80, 200),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(240, 290),
-          y: random(80, 200),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(280, 360),
-          y: random(80, 200),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(340, 390),
-          y: random(80, 200),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(380, 440),
-          y: random(80, 200),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(430, 490),
-          y: random(80, 200),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(480, 550),
-          y: random(80, 200),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(40, 90),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(80, 140),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(130, 190),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(180, 260),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(240, 290),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(280, 360),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(340, 390),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(380, 440),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(430, 490),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
-        {
-          x: random(480, 550),
-          y: random(210, 350),
-          r: random(8, 15),
-          move: false,
-          img: int(random(3)),
-        },
+        // {
+        //   x: random(130, 190),
+        //   y: random(80, 200),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(180, 260),
+        //   y: random(80, 200),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(240, 290),
+        //   y: random(80, 200),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(280, 360),
+        //   y: random(80, 200),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(340, 390),
+        //   y: random(80, 200),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(380, 440),
+        //   y: random(80, 200),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(430, 490),
+        //   y: random(80, 200),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(480, 550),
+        //   y: random(80, 200),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(40, 90),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(80, 140),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(130, 190),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(180, 260),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(240, 290),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(280, 360),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(340, 390),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(380, 440),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(430, 490),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
+        // {
+        //   x: random(480, 550),
+        //   y: random(210, 350),
+        //   r: random(8, 15),
+        //   move: false,
+        //   img: int(random(3)),
+        // },
       ],
     });
   }
@@ -393,7 +395,7 @@ function draw() {
               shared.winner.name = guests[j].role;
             }
           }
-          screen = 3;
+          gameEnd = true;
         } else {
           if (shared.stars[i].y <= -shared.stars[i].r) {
             shared.stars.splice(i, 1);
@@ -497,8 +499,10 @@ function draw() {
         fill(255, 215, 0);
         ellipse(0, 0, 20 + sin(millis() / 500) * 3);
       }
+
       guests[j].pos.x += guests[j].speedM * sin(guests[j].angle);
       guests[j].pos.y -= guests[j].speedM * cos(guests[j].angle);
+
       pop();
     }
 
@@ -512,18 +516,45 @@ function draw() {
       fade = 0;
     }
     rect(0, 0, width, height);
+
+    // Change to screen 3
+    if (gameEnd) {
+      fill(255, 215, 0);
+      noStroke();
+      ellipse(width / 2, height / 2, fadeIn, fadeIn);
+      if (fadeIn < width * 2) {
+        fadeIn += 10;
+      } else {
+        screen = 3;
+        fadeIn = 255;
+        fade = 255;
+      }
+    }
   }
 
   if (screen == 3) {
+    gameEnd = false;
+    imageMode(CORNER);
     noStroke();
     image(end, 0, 0);
     textSize(25);
     fill(0);
     textAlign(CENTER);
-    text(shared.winner.name + " Wins", 300, 370);
+    text(shared.winner.name + " WON", 300, 320);
     fill(0, 150);
     textSize(18);
-    text("Score: " + shared.winner.score, 300, 395);
+    text("Score: " + shared.winner.score, 300, 345);
+
+    // Fade away
+    noStroke();
+    rectMode(CORNER);
+    fill(255, 215, 0, fade);
+    if (fade > 0) {
+      fade -= 5;
+    } else {
+      fade = 0;
+    }
+    rect(0, 0, width, height);
   }
 }
 
