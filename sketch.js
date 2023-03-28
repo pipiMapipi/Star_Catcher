@@ -49,8 +49,8 @@ const initPlayers = [
 function preload() {
   partyConnect(
     "wss://deepstream-server-1.herokuapp.com",
-    "Gold_Miner_Ver2_Zhuoran",
-    "main2"
+    "Star_Catcher",
+    "main"
   );
   shared = partyLoadShared("globals");
   guests = partyLoadGuestShareds();
