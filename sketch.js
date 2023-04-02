@@ -25,6 +25,8 @@ let count = 0;
 let gameEnd = false;
 let fadeIn = 0;
 
+let music;
+
 const maxPlayerNum = 4;
 
 const initPlayers = [
@@ -67,11 +69,10 @@ function preload() {
     pointer: true,
     catcher: false,
   });
-
+  music = loadSound("assets/BGM.m4a");
   img = loadImage("assets/star_catcher.jpg");
   bottle = loadImage("assets/bottle.png");
   liquid = loadImage("assets/bottle2.png");
-  starCatcher = loadImage("assets/catcher.png");
   end = loadImage("assets/end.jpg");
 
   for (let i = 0; i <= 5; i++) {
@@ -85,6 +86,9 @@ function preload() {
 
 function setup() {
   createCanvas(600, 500);
+
+  music.loop();
+  music.play();
 
   if (partyIsHost()) {
     partySetShared(shared, {
@@ -236,8 +240,6 @@ function setup() {
   }
 
   playerPosition();
-
-  starCatcher.resize(50, 50);
 
   titleAnimation = new animation(title, width / 2, height / 2, 0.03);
 
